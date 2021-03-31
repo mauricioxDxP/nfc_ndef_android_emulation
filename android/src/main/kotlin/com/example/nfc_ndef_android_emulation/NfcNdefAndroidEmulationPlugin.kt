@@ -37,16 +37,14 @@ class NfcNdefAndroidEmulationPlugin() : FlutterPlugin, MethodCallHandler, Activi
     else if(call.method == "IniciarNfc"){
       val msg = call.argument<String>("msg")
       val intent = Intent(activity, KHostApduService::class.java)
-      intent.putExtra("ndefMessage",DatosPrueba(LocalDateTime.now().toString()))
+      intent.putExtra("ndefMessage",msg)
       activity.startService(intent)
     }
     else {
       result.notImplemented()
     }
   }
-  fun DatosPrueba(codigo:String):String {
-    return "{\"codigo\":\"$codigo\",\"ambiente\":\"ASAMBLEA\",\"usuario\":\"juan\"}"
-  }
+
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
   }

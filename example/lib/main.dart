@@ -54,12 +54,15 @@ class _MyAppState extends State<MyApp> {
             children: [
               Text('Running on: $_platformVersion\n'),
               FlatButton(onPressed: (){
-                  NfcNdefAndroidEmulation.IniciarNfc;
+                  NfcNdefAndroidEmulation.IniciarNfc(DatosPrueba(DateTime.now().toString()));
               }, child: Text("miau"))
             ],
           ),
         ),
       ),
     );
+  }
+   DatosPrueba(String codigo) {
+    return "{\"codigo\":\"$codigo\",\"ambiente\":\"ASAMBLEA\",\"usuario\":\"juan\"}";
   }
 }

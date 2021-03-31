@@ -11,8 +11,10 @@ class NfcNdefAndroidEmulation {
     final String version = await _channel.invokeMethod('getPlatformVersion');
     return version;
   }
-  static Future<Null> get IniciarNfc async {
-     await _channel.invokeMethod('IniciarNfc');
+  static Future<Null> IniciarNfc(String msg) async {
+    Map<String,dynamic> args = <String,dynamic>{};
+    args.putIfAbsent("msg", () => msg);
+     await _channel.invokeMethod('IniciarNfc',args);
     return null;
   }
 }
